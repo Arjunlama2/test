@@ -7,44 +7,51 @@ console.log("Hello world")
 // git push
 
 
-const tasks=[
-   
-]
-
+const tasks=[]
 
 function addTask(event){
     event.preventDefault()
-   
  let task=event.target.task.value
-
  
  tasks.push(task)
- console.log(tasks)
+ localStorage.setItem("task",JSON.stringify(tasks))
 
- displayTask()
+displayTask()
+
 
 }
 
 
-
+displayTask()
 
 function displayTask(){
+    const storedItem=  JSON.parse(localStorage.getItem("task"))
+
 const container=document.getElementById("container")
 let string=""
- const stringTask=tasks.reverse().forEach((el)=>{
- string+=`<li>${el} <button  onClick="deleteTask()">Delete</button></li>`
-
+storedItem.forEach((el,index)=>{
+  
+ string+=`<li>${el} <button  onClick='deleteTask(${index})'>Delete</button></li>`
+ 
 })
-
 container.innerHTML=string
-
 }
 
 
 
 
 function deleteTask(index){
-    console.log("Delete")
-
-    console.log(index)
+    const updateStoreItem=  JSON.parse(localStorage.getItem("task"))
+    updateStoreItem.splice(index,1)
+    localStorage.setItem("task",JSON.stringify(updateStoreItem))
+    displayTask()
 }
+
+
+const person={
+    name:"skill spark",
+    address:"ktm"
+}
+
+
+JSON.stringify(person)
