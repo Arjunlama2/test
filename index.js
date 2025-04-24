@@ -12,12 +12,13 @@ const tasks=[]
 function addTask(event){
     event.preventDefault()
  let task=event.target.task.value
- 
- tasks.push(task)
+ if(task){
+
+     tasks.push(task)
+ }
  localStorage.setItem("task",JSON.stringify(tasks))
 
 displayTask()
-
 
 }
 
@@ -31,7 +32,7 @@ const container=document.getElementById("container")
 let string=""
 storedItem.forEach((el,index)=>{
   
- string+=`<li>${el} <button  onClick='deleteTask(${index})'>Delete</button></li>`
+ string+=`<li>${el} <button  onClick='deleteTask(${index})'>Delete</button> <button>Edit</button></li>`
  
 })
 container.innerHTML=string
@@ -52,6 +53,7 @@ const person={
     name:"skill spark",
     address:"ktm"
 }
+
 
 
 JSON.stringify(person)

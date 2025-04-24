@@ -1,0 +1,32 @@
+
+
+form{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+form input{
+    padding: 5px;
+}
+
+form button{
+    background-color: aqua;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+}
+.container{
+    display: flex;
+    margin-top:50px ;
+   align-items: center;
+   gap: 16px;
+
+    flex-direction: column;
+}
+
+.container li{
+    color: blue;
+    font-size: larger;
+
+}
