@@ -7,7 +7,7 @@ console.log("Hello world")
 // git push
 
 
-const tasks=[]
+const tasks=JSON.parse(localStorage.getItem("task")) || []
 
 function addTask(event){
     event.preventDefault()
@@ -15,10 +15,12 @@ function addTask(event){
  if(task){
 
      tasks.push(task)
+     localStorage.setItem("task",JSON.stringify(tasks))
  }
- localStorage.setItem("task",JSON.stringify(tasks))
 
 displayTask()
+const inputFiled=document.getElementById("task")
+inputFiled.value=null
 
 }
 
@@ -30,9 +32,9 @@ function displayTask(){
 
 const container=document.getElementById("container")
 let string=""
-storedItem.forEach((el,index)=>{
+storedItem.reverse().forEach((el,index)=>{
   
- string+=`<li>${el} <button  onClick='deleteTask(${index})'>Delete</button> <button>Edit</button></li>`
+ string+=`<li>${el} <button  onClick='deleteTask(${index})'>Delete</button> <button onClick=editTask(${index})>Edit</button></li>`
  
 })
 container.innerHTML=string
@@ -42,18 +44,31 @@ container.innerHTML=string
 
 
 function deleteTask(index){
-    const updateStoreItem=  JSON.parse(localStorage.getItem("task"))
-    updateStoreItem.splice(index,1)
-    localStorage.setItem("task",JSON.stringify(updateStoreItem))
+    tasks.splice(index,1)
+    localStorage.setItem("task",JSON.stringify(tasks))
     displayTask()
 }
 
 
-const person={
-    name:"skill spark",
-    address:"ktm"
+// const person={
+//     name:"skill spark",
+//     address:"ktm"
+// }
+
+
+// console.log(
+//     JSON.stringify(person))
+
+
+const editTask=(index)=>{
+    const data=JSON.parse(localStorage.getItem("task"))
+
+    const dataToedit=data[index]
+    const inputFiled=document.getElementById("task")
+   
+    inputFiled.value=dataToedit
+  
+deleteTask(index)
+
+
 }
-
-
-
-JSON.stringify(person)
