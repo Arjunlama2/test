@@ -72,3 +72,79 @@ deleteTask(index)
 
 
 }
+
+
+
+const billdata=[]
+const addRecord=(event)=>{
+    event.preventDefault()
+    console.log(event.target.particular.value)
+    let data={} 
+       data.name=event.target.particular.value
+     data.quatity=event.target.quantity.value
+     data.rate=event.target.rate.value
+     billdata.push(data)
+
+
+     displayBills()
+   
+}
+
+
+const displayBills=()=>{
+
+    const tableData=document.getElementById("tdata")
+    let string=""
+    
+    billdata.forEach((el,index)=>{
+    string+=`<tr><td>${el.name}</d><td>${el.quatity}</td><td>${el.rate}</td><tr>   `
+    })
+    
+    
+    
+    tableData.innerHTML=string
+    
+}
+
+
+
+
+// console.log('Start');
+
+// setTimeout(() => {
+//   console.log('Timeout done!');
+// }, 2000);
+
+// console.log('End');
+
+
+
+// Promise   async-await
+
+
+
+
+const myPromise = new Promise((resolve, reject) => {
+    // Perform an asynchronous operation here (e.g., fetching data)
+    setTimeout(() => {
+      const success = false; // Simulate success or failure
+  
+      if (success) {
+        resolve("Data fetched successfully!"); // Call resolve with the result
+      } else {
+        reject("Failed to fetch data."); // Call reject with the error reason
+      }
+    }, 1500);
+  }).then((respose)=>{
+
+console.log(respose)
+
+  }).catch((error)=>{
+console.log(error)
+  })
+
+// bckend connection is a promise, databse connection ,thridparty api are promise
+//   combination of async await and try catch
+
+
+
